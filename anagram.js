@@ -6,17 +6,20 @@ $(document).ready(function(){
 $('#anagramChecker').on('submit', function(e) {
 	e.preventDefault();
 
-	var firstWord = $('#firstWord').val().trim().toLowerCase();
-	var secondWord = $('#secondWord').val().trim().toLowerCase();
+	var displayFirstWord = $('#firstWord').val();
+	var displaySecondWord = $('#secondWord').val();
+
+	var firstWord = displayFirstWord.replace(/ /g, '').toLowerCase();
+	var secondWord = displaySecondWord.replace(/ /g, '').toLowerCase();
 
 	// console.log(firstWord);
 	// console.log(secondWord);
 	var wordCheck = isAnagram(firstWord, secondWord);
 	if ( wordCheck ) {
-		$('#result').empty().append("<p>" + firstWord + " and " + secondWord + " are anagrams!</p>");
+		$('#result').empty().removeClass().addClass('positive').append("<p>" + displayFirstWord + " and " + displaySecondWord + " are anagrams!</p>");
 	}
 	else {
-		$('#result').empty().append("<p>" + firstWord + " and " + secondWord + " are <strong>not</strong> anagrams!</p>");
+		$('#result').empty().removeClass().addClass('negative').append("<p>" + displayFirstWord + " and " + displaySecondWord + " are <strong>not</strong> anagrams!</p>");
 	}
 });
 
@@ -37,7 +40,6 @@ function isAnagram ( firstWord, secondWord ) {
 	// every match, remove the letter from the second word
 	// 1) if a letter can't be matched, it's not an anagram
 	// 2) if letters run out, it's not an anagram
-
 	for( var i = 0; i < firstWordArr.length; i++ ) {
 		// where is the letter of firstWord located in secondWord?
 		var index = secondWordArr.indexOf( firstWordArr[i] );
