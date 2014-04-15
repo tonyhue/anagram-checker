@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Anagram Checker</title>
+
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="style.css" />
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="anagram.js"></script>
+
+</head>
+<body>
+
+	<div class="container">
+		<h1>Anagram Checker</h1>
+
+		<p>Give me two words/phrases and I will tell you if they are anagrams! For example: </p>
+		<ul>
+			<li>"cinema" = "iceman"</li>
+			<li>"Tom Marvolo Riddle" = "I am Lord Voldemort"</li>
+		</ul>
+
+		<form id="anagramChecker" role="form">
+			<div class="form-group">
+				<label for="firstWord">First word</label>
+				<input id="firstWord" class="form-control" type="text" name="firstWord" placeholder="first word">
+			</div>
+			<div class="form-group">
+				<label for="secondWord">Second word</label>
+				<input id="secondWord" class="form-control" type="text" name="secondWord" placeholder="second word">
+			</div>
+			<div class="form-group">
+				<button class="btn btn-default" type="submit">Check!</button>
+			</div>
+		</form>
+		<div id="result"></div>
+
+	</div>
+
+</body>
+</html>
