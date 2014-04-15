@@ -1,26 +1,45 @@
 // TODO:
 // if given a phrase, strip out white space between each word
+// # of characters in each word/phrase must be equivalent
+// example: apple and applepie are not anagrams
 
 $(document).ready(function(){
 
 $('#anagramChecker').on('submit', function(e) {
 	e.preventDefault();
 
-	var displayFirstWord = $('#firstWord').val();
-	var displaySecondWord = $('#secondWord').val();
+	// set vars
+	var $result		= $('#result'),
+		$firstWord  = $('#firstWord'),
+		$secondWord = $('#secondWord'),
+		flag        = false;
+
+	var displayFirstWord = $firstWord.val();
+	var displaySecondWord = $secondWord.val();
+
+	// check if value provided
+	if ( !displayFirstWord || !displaySecondWord ) {
+		flag = true;
+	}
 
 	var firstWord = displayFirstWord.replace(/ /g, '').toLowerCase();
 	var secondWord = displaySecondWord.replace(/ /g, '').toLowerCase();
 
-	// console.log(firstWord);
-	// console.log(secondWord);
-	var wordCheck = isAnagram(firstWord, secondWord);
-	if ( wordCheck ) {
-		$('#result').empty().removeClass().addClass('positive').append("<p>" + displayFirstWord + " and " + displaySecondWord + " are anagrams!</p>");
+	// if form completed, continue
+	if ( !flag ) {
+		
+		var wordCheck = isAnagram(firstWord, secondWord);
+		
+		if ( wordCheck ) {
+			$result.empty().removeClass().addClass('positive').append("<p>" + displayFirstWord + " and " + displaySecondWord + " are anagrams!</p>");
+		} else {
+			$result.empty().removeClass().addClass('negative').append("<p>" + displayFirstWord + " and " + displaySecondWord + " are <strong>not</strong> anagrams!</p>");
+		}
+	} else {
+		$result.empty().removeClass();
+		$result.append("<p>Please enter some words/phrases.</p>");
 	}
-	else {
-		$('#result').empty().removeClass().addClass('negative').append("<p>" + displayFirstWord + " and " + displaySecondWord + " are <strong>not</strong> anagrams!</p>");
-	}
+	
 });
 
 function isAnagram ( firstWord, secondWord ) {
@@ -46,11 +65,17 @@ function isAnagram ( firstWord, secondWord ) {
 		// if it's there, remove it from secondWord
 		if ( index > -1 ) {
 			secondWordArr.splice( index, 1 );
-		} else {
+		} else { // if it's not there, this is not an anagram
 			result = false;
 			break;
 		}
 	} // end for()
+	
+	// if the second word still contains letters, this is not an anagram
+	// example: apple and applepie are not anagrams
+	if ( result === true && secondWordArr.length > 0) {
+		result = false;
+	}
 
 	return result;
 
