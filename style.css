@@ -184,6 +184,16 @@ td,
 th {
   padding: 0;
 }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -204,23 +214,27 @@ body {
   font-size: 14px;
   line-height: 1.42857143;
   color: #333333;
-  background-color: #f6f6f6;
+  background-color: #6f5499;
 }
 .container {
   width: 500px;
   margin: 0 auto;
   background-color: #ffffff;
   padding: 25px;
-  border: 1px solid #03A003;
+  border: 1px solid #707070;
   margin-top: 45px;
   border-radius: 4px;
 }
-
+.title {
+  text-align: center;
+  color: #6f5499;
+}
 /* ========================================= *\
     Form
 \* ========================================= */
 form {
   margin-top: 25px;
+  text-align: center;
 }
 .form-group {
   margin-bottom: 15px;
@@ -232,11 +246,11 @@ label {
 }
 input[type="text"] {
   padding: 6px 12px;
+  text-align: center;
 }
 button[type="submit"] {
   color: #fff;
-  background-color: #03A003;
-  border-color: #398439;
+  background-color: #AAAAAA;
   display: inline-block;
   margin-bottom: 0;
   font-weight: 400;
@@ -252,12 +266,25 @@ button[type="submit"] {
   border-radius: 4px;
 }
 button[type="submit"]:hover {
-  background-color: #03c404;
+  background-color: #707070;
 }
 
 
-
-
+/* ========================================= *\
+    Result
+\* ========================================= */
+#result {
+  text-align: center;
+  padding: 5px 0;
+}
+.positive {
+  background: #3D9970;
+  color: #FFFFFF;
+}
+.negative {
+  background: #FF4136;
+  color: #FFDC00;
+}
 
 
 
